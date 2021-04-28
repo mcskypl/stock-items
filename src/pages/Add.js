@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import * as FirestoreService from '../services/firestore';
+import './Main.css';
 
 const Add = ({currentIndex, database}) => {
 
@@ -27,22 +28,28 @@ const Add = ({currentIndex, database}) => {
 
     return(
         <>
-            <h1>Add view</h1>
+            <h1 className='text-center'>{currentIndex}</h1>
+            <hr/>
 
-            Miejsce:
-            <input type="text" onChange={e => setNewPlace(e.target.value.toUpperCase())}/>
-            Partia:
-            <input type="number" onChange={e => setNewBatch(e.target.value)}/>
+            <label htmlFor="place" className="form-label">Miejsce</label>
+            <input className="form-control" id="place" type="text" onChange={e => setNewPlace(e.target.value.toUpperCase())} />
 
-            <button onClick={AddFn}>Dodaj</button>
+            <label htmlFor="batch" className="form-label">Partia</label>
+            <input className="form-control" id="batch" type="number" onChange={e => setNewBatch(e.target.value)} />
 
+            <div className="d-grid gap-2">
+                <button className='btn btn-success' onClick={AddFn}>Dodaj</button>
+            </div>
 
-            <h3>{currentIndex}</h3>
             {
-                database.length === 0 ? <h3>{"Brak danych"}</h3> : database.map(item =>
-                    <h3>{item.place} | {item.batch} | <button value={item.id} onClick={deleteData}>USUN</button></h3>)
+                database.length === 0 ? <h3 className='text-center'>{"Brak danych"}</h3> : database.map(item =>
+                    <h3 className='flexItems'>
+                        <div>{item.place}</div>
+                        <div>{item.batch}</div>
+                        <button className='btn btn-danger' value={item.id} onClick={deleteData}>USUN</button>
+                    </h3>)
             }
-            <Link to="/">Wróć</Link>
+            <Link className="btn btn-secondary" to="/">Wróć</Link>
 
         </>
     )

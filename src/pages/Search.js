@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as FirestoreService from '../services/firestore';
+import './Main.css';
 
 const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
 
@@ -36,18 +37,32 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
 
     return(
         <>
-            <h1>Main view</h1>
-            <input onChange={snapData} value={currentIndex}/>
-            <button onClick={() => {
-                setCurrentIndex('')
-                setDatabase([])
-            }}>Wyczyść</button>
-            {database.length === 0 ? '' : <h2>{currentIndex}</h2>}
-            <Link to="/add">Dodaj</Link>
+            <label htmlFor="searchDb" className="form-label">Index</label>
+            <input type="text" className="form-control" id="searchDb" onChange={snapData} value={currentIndex} />
+            <div className="d-grid gap-2">
+                <button className="btn btn-outline-secondary" onClick={() => {
+                    setCurrentIndex('')
+                    setDatabase([])
+                }}>Wyczyść
+                </button>
+            </div>
+
+            {database.length === 0 ? '' : <div><h2 className='text-center'>{currentIndex}</h2> <hr/></div>}
             {
-                database.length === 0 ? <h3>{"Brak danych"}</h3> : database.map(item =>
-                    <h3>{item.place} | {item.batch} | <button value={item.id} onClick={deleteData}>USUN</button></h3>)
+                database.length === 0 ? <h3 className='text-center'>{"Brak danych"}</h3> : database.map(item =>
+                    <h3 className='flexItems'>
+                        <div>{item.place}</div>
+                        <div>{item.batch}</div>
+                        <button className='btn btn-danger' value={item.id} onClick={deleteData}>USUN</button>
+                    </h3>)
             }
+
+            {currentIndex === '' ? '' :
+                <div className="d-grid gap-2">
+                    <Link class="btn btn-success" to="/add">Dodaj</Link>
+                </div>
+            }
+
         </>
     )
 }

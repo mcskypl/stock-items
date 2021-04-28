@@ -1,0 +1,12 @@
+.flexItems {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    font-size: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}

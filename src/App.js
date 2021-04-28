@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import './App.css';
 import Search from "./pages/Search";
 import Add from "./pages/Add";
 
@@ -9,8 +10,8 @@ const App = () => {
     const [database, setDatabase] = useState([]);
 
     return (
-        <Router>
-            <>
+        <div className='container'>
+            <Router>
                 <Switch>
                     <Route exact path="/">
                         <Search
@@ -29,8 +30,8 @@ const App = () => {
                         />
                     </Route>
                 </Switch>
-            </>
-        </Router>
+            </Router>
+        </div>
     );
 }
 
