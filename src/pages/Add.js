@@ -32,10 +32,10 @@ const Add = ({currentIndex, database}) => {
             <hr/>
 
             <label htmlFor="place" className="form-label">Miejsce</label>
-            <input className="form-control" id="place" type="text" onChange={e => setNewPlace(e.target.value.toUpperCase())} />
+            <input className="form-control" id="place" type="text" onChange={e => setNewPlace(e.target.value.toUpperCase())} required />
 
             <label htmlFor="batch" className="form-label">Partia</label>
-            <input className="form-control" id="batch" type="number" onChange={e => setNewBatch(e.target.value)} />
+            <input className="form-control" id="batch" type="number" onChange={e => setNewBatch(e.target.value)} required />
 
             <div className="d-grid gap-2">
                 <button className='btn btn-success' onClick={AddFn}>Dodaj</button>
