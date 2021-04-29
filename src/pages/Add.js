@@ -13,8 +13,8 @@ const Add = ({currentIndex, database}) => {
             .doc('mag4')
             .collection(currentIndex)
             .add({
-            batch: newBatch,
-            place: newPlace
+            itemBatch: newBatch,
+            itemPlace: newPlace
         })
     }
 
@@ -44,8 +44,8 @@ const Add = ({currentIndex, database}) => {
             {
                 database.length === 0 ? <h3 className='text-center'>{"Brak danych"}</h3> : database.map(item =>
                     <h3 className='flexItems'>
-                        <div>{item.place}</div>
-                        <div>{item.batch}</div>
+                        <div>{item.itemPlace}</div>
+                        <div>{item.itemBatch}</div>
                         <button className='btn btn-danger' value={item.id} onClick={deleteData}>USUN</button>
                     </h3>)
             }
