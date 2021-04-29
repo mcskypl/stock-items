@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import './App.css';
 import Search from "./pages/Search";
 import Add from "./pages/Add";
+import Updates from './pages/Updates';
 
 const App = () => {
 
@@ -28,6 +29,9 @@ const App = () => {
                             database={database}
                             setDatabase={setDatabase}
                         />
+                    </Route>
+                    <Route exact path="/updates">
+                        <Updates />
                     </Route>
                 </Switch>
             </Router>
