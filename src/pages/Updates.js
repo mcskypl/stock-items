@@ -19,7 +19,7 @@ const Updates = () => {
                     <div><small>- Aktualizacja zabezpieczeń</small></div>
                 </span>
             </div>
-            
+
             <br/>
 
             <div className="list-group">
