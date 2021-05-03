@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import * as FirestoreService from '../services/firestore';
 import './Main.css';
+import ListItems from "../components/ListItems/ListItems";
 
 const Add = ({currentIndex, database}) => {
 
@@ -47,21 +48,11 @@ const Add = ({currentIndex, database}) => {
                 <button className='btn btn-success' onClick={AddFn}>Dodaj</button>
             </div>
 
-            {
-                database.length === 0 ? <h3 className='text-center'>{"Brak danych"}</h3> : database.map(item =>
-                    <h3 className='flexItems'>
-                        <div>{item.itemPlace}</div>
-                        <div>{item.itemBatch}</div>
-                        <button
-                            className='btn btn-danger'
-                            value={item.id}
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                            onClick={deleteDataModal}>
-                            USUN
-                        </button>
-                    </h3>)
-            }
+            <ListItems
+                database={database}
+                currentIndex={currentIndex}
+            />
+
             <Link className="btn btn-secondary" to="/">Wróć</Link>
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"

@@ -4,6 +4,7 @@ import './App.css';
 import Search from "./pages/Search";
 import Add from "./pages/Add";
 import Updates from './pages/Updates';
+import TopBar from "./components/TopBar";
 
 const App = () => {
 
@@ -11,8 +12,12 @@ const App = () => {
     const [database, setDatabase] = useState([]);
 
     return (
-        <div className='container'>
+        <>
+
+
             <Router>
+                <TopBar />
+                <div className='container'>
                 <Switch>
                     <Route exact path="/">
                         <Search
@@ -34,8 +39,9 @@ const App = () => {
                         <Updates />
                     </Route>
                 </Switch>
+                </div>
             </Router>
-        </div>
+        </>
     );
 }
 
