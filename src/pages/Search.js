@@ -57,7 +57,7 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
             {database.length === 0 ? '' : <div><h2 className='text-center'>{currentIndex}</h2> <hr/></div>}
             {
                 database.length === 0 ? <h3 className='text-center'>{"Brak danych 😴"}</h3> : database.map(item =>
-                    <h3 className='flexItems'>
+                    <h3 key={item.id} className='flexItems'>
                         <div>{item.itemPlace}</div>
                         <div>{item.itemBatch}</div>
                         <button

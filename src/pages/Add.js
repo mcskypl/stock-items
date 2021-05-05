@@ -33,11 +33,9 @@ const Add = ({currentIndex, database}) => {
 
             <label htmlFor="place" className="form-label">Miejsce</label>
             <input className="form-control" id="place" type="text" onChange={e => setNewPlace(e.target.value.toUpperCase())} />
-            <input className="form-control" id="place" type="text" onChange={e => setNewPlace(e.target.value.toUpperCase())} required />
 
             <label htmlFor="batch" className="form-label">Partia</label>
             <input className="form-control" id="batch" type="number" onChange={e => setNewBatch(e.target.value)} />
-            <input className="form-control" id="batch" type="number" onChange={e => setNewBatch(e.target.value)} required />
 
             <div className="d-grid gap-2">
                 <button className='btn btn-success' onClick={AddFn}>Dodaj</button>
@@ -45,14 +43,15 @@ const Add = ({currentIndex, database}) => {
 
             {
                 database.length === 0 ? <h3 className='text-center'>{"Brak danych"}</h3> : database.map(item =>
-                    <h3 className='flexItems'>
+                    <h3 key={item.id} className='flexItems'>
                         <div>{item.itemPlace}</div>
                         <div>{item.itemBatch}</div>
                         <button className='btn btn-danger' value={item.id} onClick={deleteData}>USUN</button>
                     </h3>)
             }
-            <Link className="btn btn-secondary" to="/">Wróć</Link>
-
+            <div className="d-grid gap-2">
+                <Link className="btn btn-outline-secondary" to="/">Wróć</Link>
+            </div>
         </>
     )
 }

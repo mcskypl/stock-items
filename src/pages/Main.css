@@ -3,13 +3,18 @@
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.23);
     padding-bottom: 20px;
 }
 
 .flexItems:last-child {
     border: none;
     padding: 0;
+    background-color: red;
+}
+
+h3.text-center {
+    margin-top: 26px;
 }
 
 input {
@@ -17,7 +22,8 @@ input {
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 26px;
+    margin-top: 26px;
 }
 
 .btn {

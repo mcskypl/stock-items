@@ -12,7 +12,7 @@ const App = () => {
     const [database, setDatabase] = useState([]);
 
     return (
-        <>
+        <> 
 
 
             <Router>

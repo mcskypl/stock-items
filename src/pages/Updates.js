@@ -13,7 +13,7 @@ const Updates = () => {
                 <span className="list-group-item list-group-item-action" aria-current="true">
                     <div className="d-flex w-100 justify-content-between">
                         <h5 className="mb-1">1.0.3</h5>
-                        <small>03.05.2021</small>
+                        <small>05.05.2021</small>
                     </div>
                     <div><small>- Dodanie panelu nawigacji</small></div>
                     <div><small>- Aktualizacja zabezpieczeń</small></div>
