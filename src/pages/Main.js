@@ -5,8 +5,6 @@ import Search from "../pages/Search";
 import Add from "../pages/Add";
 import Updates from '../pages/Updates';
 import TopBar from "../components/TopBar";
-import Login from "../pages/Login";
-import * as FirestoreService from "../services/firestore";
 import UserInfo from "./UserInfo";
 
 const App = ({user}) => {
