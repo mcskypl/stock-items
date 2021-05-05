@@ -1,45 +1,30 @@
 import React, { useState } from "react";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import './App.css';
-import Search from "./pages/Search";
-import Add from "./pages/Add";
-import Updates from './pages/Updates';
-import TopBar from "./components/TopBar";
+import * as FirestoreService from "./services/firestore";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Main from "./pages/Main";
+import Login from "./pages/Login";
 
 const App = () => {
 
-    const [currentIndex, setCurrentIndex] = useState('');
-    const [database, setDatabase] = useState([]);
+    const [user, setUser] = useState('');
+
+    FirestoreService.auth().onAuthStateChanged((user) => {
+        if (user) {
+            setUser(user);
+        } else {
+            setUser(null)
+        }
+    });
 
     return (
-        <> 
-
-
+        <>
             <Router>
-                <TopBar />
-                <div className='container'>
                 <Switch>
-                    <Route exact path="/">
-                        <Search
-                            currentIndex={currentIndex}
-                            setCurrentIndex={setCurrentIndex}
-                            database={database}
-                            setDatabase={setDatabase}
-                        />
-                    </Route>
-                    <Route exact path="/add">
-                        <Add
-                            currentIndex={currentIndex}
-                            setCurrentIndex={setCurrentIndex}
-                            database={database}
-                            setDatabase={setDatabase}
-                        />
-                    </Route>
-                    <Route exact path="/updates">
-                        <Updates />
+
+                    <Route exac path='/'>
+                        {user ? <Main user={user} /> : <Login />}
                     </Route>
                 </Switch>
-                </div>
             </Router>
         </>
     );
