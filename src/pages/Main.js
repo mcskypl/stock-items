@@ -12,7 +12,6 @@ const App = ({user}) => {
     const [currentIndex, setCurrentIndex] = useState('');
     const [database, setDatabase] = useState([]);
 
-
     return (
         <>
             <Router>

@@ -56,7 +56,7 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
 
             {database.length === 0 ? '' : <div><h2 className='text-center'>{currentIndex}</h2> <hr/></div>}
             {
-                database.length === 0 ? <h3 className='text-center'>{"Brak danych 😴"}</h3> : database.map(item =>
+                database.length === 0 ? <h3 className='text-center'>{"Brak danych..."}</h3> : database.map(item =>
                     <h3 key={item.id} className='flexItems'>
                         <div>{item.itemPlace}</div>
                         <div>{item.itemBatch}</div>
@@ -82,7 +82,7 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">CZY NA PEWNO CHCESZ USUNĄĆ {currentIndex}? 🤔</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">CZY NA PEWNO CHCESZ USUNĄĆ {currentIndex}?</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
