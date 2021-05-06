@@ -2,10 +2,14 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import * as FirestoreService from '../services/firestore';
 import './Main.css';
+import deleteIcon from '../icons/delete.svg';
+import editIcon from '../icons/edit.svg';
 
 const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
 
-    const [deleteIndex, setDeleteIndex] = useState([]);
+    const [deleteIndex, setDeleteIndex] = useState('');
+    const [updateDataPlace, setUpdateDataPlace] = useState('');
+    const [updateDataBatch, setUpdateDataBatch] = useState('');
 
     const snapData = (e) => {
         let inputValue = e.target.value.toUpperCase();
@@ -42,6 +46,25 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
         });
     }
 
+    const editDataModal = (e) => {
+        setDeleteIndex(e.target.value)
+        setUpdateDataPlace(e.target.dataset.place);
+        setUpdateDataBatch(e.target.dataset.batch);
+    };
+
+    const editDataBatch = (e) => setUpdateDataBatch(e.target.value);
+    const editDataPlace = (e) => setUpdateDataPlace(e.target.value.toUpperCase());
+
+    const editData = () => {
+        setUpdateDataPlace('');
+        setUpdateDataBatch('');
+        FirestoreService.db.collection("magazyn").doc("mag4").collection("OPR160").doc(deleteIndex)
+            .update({
+                itemPlace: updateDataPlace,
+                itemBatch: updateDataBatch
+            });
+    }
+
     return(
         <>
             <label htmlFor="searchDb" className="form-label">Index</label>
@@ -60,14 +83,27 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
                     <h3 key={item.id} className='flexItems'>
                         <div>{item.itemPlace}</div>
                         <div>{item.itemBatch}</div>
-                        <button
-                            className='btn btn-danger'
-                            value={item.id}
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                            onClick={deleteDataModal}>
-                            USUN
-                        </button>
+                        <div className='buttons-modal'>
+                            <button
+                                className='btn btn-outline-danger'
+                                value={item.id}
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                onClick={deleteDataModal}>
+                                <img src={deleteIcon} alt='Usuń' />
+                            </button>
+                            <button
+                                className='btn btn-outline-secondary'
+                                value={item.id}
+                                data-place={item.itemPlace}
+                                data-batch={item.itemBatch}
+                                data-bs-toggle="modal"
+                                data-bs-target="#editModal"
+                                onClick={editDataModal}>
+                                <img src={editIcon} alt='Edit' />
+                            </button>
+                        </div>
+
                     </h3>)
             }
 
@@ -89,6 +125,31 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">NIE</button>
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={deleteData}>USUŃ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="editModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Edytujesz {currentIndex}</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="input-group-modal">
+                                <label htmlFor="place" className="form-label">Miejsce</label>
+                                <input value={updateDataPlace} className="form-control" id="place" type="text" onChange={editDataPlace} />
+
+                                <label htmlFor="batch" className="form-label">Partia</label>
+                                <input value={updateDataBatch} className="form-control" id="batch" type="number" onChange={editDataBatch} />
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={editData}>Aktualizuj</button>
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const emailFn = (e) => {
         setEmail(e.target.value)
@@ -18,10 +19,10 @@ const Login = () => {
         e.preventDefault();
         FirestoreService.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
-
+                setError('');
             })
             .catch((error) => {
-
+                setError('Błędny email/hasło!');
             });
     }
 
@@ -38,6 +39,7 @@ const Login = () => {
                     </div>
                     <button type="submit" className="btn btn-primary">Zaloguj się</button>
                 </form>
+                <h2>{error}</h2>
             </div>
     );
 }

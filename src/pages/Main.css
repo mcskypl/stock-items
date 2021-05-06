@@ -33,3 +33,24 @@ h2 {
 img {
     pointer-events: none;
 }
+
+.input-group-modal input {
+    width: 100%;
+}
+
+.buttons-modal .btn {
+    padding: 3px 6px;
+    margin-right: 6px;
+}
+
+.buttons-modal .btn:last-child {
+    margin-right: 0;
+}
+
+.modal-footer .btn {
+    margin-right: 10px;
+}
+
+.modal-footer .btn:last-child {
+    margin-right: 0;
+}
