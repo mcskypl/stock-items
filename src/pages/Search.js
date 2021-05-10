@@ -58,7 +58,7 @@ const Search = ({currentIndex, setCurrentIndex, database, setDatabase}) => {
     const editData = () => {
         setUpdateDataPlace('');
         setUpdateDataBatch('');
-        FirestoreService.db.collection("magazyn").doc("mag4").collection("OPR160").doc(deleteIndex)
+        FirestoreService.db.collection("magazyn").doc("mag4").collection(currentIndex).doc(deleteIndex)
             .update({
                 itemPlace: updateDataPlace,
                 itemBatch: updateDataBatch
